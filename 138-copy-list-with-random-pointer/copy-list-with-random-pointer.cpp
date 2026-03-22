@@ -13,7 +13,6 @@ public:
     }
 };
 */
-//github
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
