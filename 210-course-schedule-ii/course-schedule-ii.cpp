@@ -64,7 +64,10 @@ public:
         vector<int> topo;
 
         if(isCyclic(adj,visited,pathvisit,numCourses,topo)){
-            return topo;
+            if(topo.size()==numCourses){
+                return topo;
+            }
+            return {};
         }
         else{
             return {};
