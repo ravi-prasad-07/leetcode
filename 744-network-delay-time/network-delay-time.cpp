@@ -30,7 +30,7 @@ public:
         }
         int ans=0;
 
-        for(int i=1; i<=n;i++){
+        for(int i=1;i<=n;i++){
             if(dist[i]==INT_MAX) return -1;
             ans=max(ans,dist[i]);
         }
