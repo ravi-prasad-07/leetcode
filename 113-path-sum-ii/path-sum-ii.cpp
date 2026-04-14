@@ -12,7 +12,7 @@
 class Solution {
 public:
 
-    void sol(TreeNode* root, vector<vector<int>>& res, vector<int> help, int tsum, int sum){
+    void sol(TreeNode* root, vector<vector<int>>& res, vector<int>& help, int tsum, int sum){
         if(root==nullptr){
             return;
         }
