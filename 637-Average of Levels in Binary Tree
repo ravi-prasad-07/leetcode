@@ -9,6 +9,10 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+//This is leetcode question number 637. The mode of this question is Easy.
+//Concept requiered: BFS, Tree, Graph, Queue
+
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
