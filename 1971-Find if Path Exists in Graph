@@ -1,0 +1,63 @@
+---
+
+## Intuition
+If we think of the graph as a map, we want to know: **can we travel from the source city to the destination city?** We simply start at the source and explore all reachable nodes level by level (BFS). If we ever land on the destination, a valid path exists. If we exhaust all reachable nodes without finding it, no path exists.
+
+---
+
+## Approach
+1. **Build an adjacency list** from the given edge list so we can efficiently look up neighbors of any node.
+2. **BFS from source** — push source into a queue and mark it visited.
+3. At each step, pop a node. If it's the destination, return `true`.
+4. Otherwise, push all unvisited neighbors into the queue and mark them visited (to avoid revisiting).
+5. If the queue empties without hitting the destination, return `false`.
+
+---
+
+## Complexity
+- **Time Complexity: O(V + E)**
+  - Every node (V) and edge (E) is processed at most once.
+- **Space Complexity: O(V + E)**
+  - Adjacency list takes O(V + E), visit array takes O(V), queue takes O(V) in the worst case.
+
+---
+
+## Code
+```cpp
+class Solution {
+public:
+    bool validPath(int n, vector<vector<int>>& adj, int source, int destination) {
+
+        // Step 1: Build adjacency list
+        vector<vector<int>> edges(n);
+        for (auto& e : adj) {
+            edges[e[0]].push_back(e[1]);
+            edges[e[1]].push_back(e[0]);
+        }
+
+        // Step 2: BFS
+        queue<int> q;
+        q.push(source);
+        vector<int> visit(n, 0);
+        visit[source] = 1;
+
+        while (!q.empty()) {
+            int node = q.front();
+            q.pop();
+
+            // Found destination
+            if (node == destination) return true;
+
+            // Explore unvisited neighbors
+            for (int i = 0; i < edges[node].size(); i++) {
+                if (!visit[edges[node][i]]) {
+                    visit[edges[node][i]] = 1;
+                    q.push(edges[node][i]);
+                }
+            }
+        }
+
+        return false;
+    }
+};
+```
