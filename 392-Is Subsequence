@@ -1,0 +1,48 @@
+🧠 Intuition
+To check if s is a subsequence of t, we don’t need to try all combinations (which would be expensive).
+
+Instead, we can greedily match characters in order:
+
+Traverse string t
+Try to match characters of s one by one
+If all characters of s are found in order inside t, then s is a subsequence
+The key idea is:
+
+A subsequence only requires relative order, not continuity.
+
+⚙️ Approach
+Use a pointer j for string s
+
+Iterate through each character c in t
+
+If c == s[j], move j forward
+
+At the end:
+
+If j == s.size(), all characters were matched → return true
+Otherwise → return false
+💻 Code
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int j = 0;
+
+        for (char c : t) {
+            if (j < s.size() && c == s[j]) {
+                j++;
+            }
+        }
+
+        return j == s.size();
+    }
+};
+⏱️ Time Complexity
+O(n), where n = t.length()
+We scan t exactly once
+🧮 Space Complexity
+O(1) (constant space)
+No extra data structures used
+✅ Summary
+Efficient single-pass solution
+Greedy + two-pointer technique
+Optimal for a single query scenario
