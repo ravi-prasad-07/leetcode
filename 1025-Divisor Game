@@ -1,0 +1,110 @@
+---
+
+# 🧠 Intuition
+
+This is a game theory problem where both players play optimally.
+
+* If `n` is **even** → Alice wins
+* If `n` is **odd** → Alice loses
+
+Because:
+
+* From an even number, Alice can always make it odd
+* From an odd number, every move leads back to even
+  👉 Eventually, opponent gets stuck at `1`
+
+---
+
+# ⚙️ Approach
+
+## 🔹 Method 1: Mathematical Observation (Optimal)
+
+* Simply check:
+
+  * If `n % 2 == 0` → return `true`
+  * Else → return `false`
+
+---
+
+## 🔹 Method 2: Dynamic Programming
+
+This question belongs to Dynamic Programming category,
+that's why we using O(n^2)
+
+* Define:
+
+  * `dp[i] = true` → current player can win with number `i`
+* Try all divisors `x`:
+
+  * If `i % x == 0` AND `dp[i - x] == false`
+  * Then `dp[i] = true`
+
+---
+
+# ⏱️ Time Complexity
+
+* **Method 1:** `O(1)`
+* **Method 2:** `O(n²)`
+
+# 💾 Space Complexity
+
+* **Method 1:** `O(1)`
+* **Method 2:** `O(n)`
+
+---
+
+# 💻 Code
+
+```cpp
+class Solution {
+public:
+
+    // 🔹 Method 1: Mathematical Approach
+    bool divisorGame(int n) {
+        return n % 2 == 0;
+    }
+
+    // 🔹 Method 2: Dynamic Programming
+    bool divisorGameDP(int n) {
+        vector<bool> dp(n + 1, false);
+
+        for (int i = 2; i <= n; i++) {
+            for (int x = 1; x < i; x++) {
+                if (i % x == 0 && !dp[i - x]) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[n];
+    }
+};
+```
+
+---
+
+# 🔍 Dry Run Example
+
+### Example: `n = 5`
+
+### DP Table Build:
+
+| i | Possible Moves | dp[i] |
+| - | -------------- | ----- |
+| 1 | ❌              | false |
+| 2 | 2 → 1          | true  |
+| 3 | 3 → 2          | false |
+| 4 | 4 → 1,2        | true  |
+| 5 | 5 → 4          | false |
+
+👉 Final Answer: `false`
+
+---
+
+# 🚀 Key Takeaway
+
+* DP helps **discover the pattern**
+* Math solution is the **final optimized answer**
+
+---
