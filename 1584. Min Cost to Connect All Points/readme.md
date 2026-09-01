@@ -240,14 +240,3 @@ Therefore:
 ```text
 Answer = 20
 ```
-
-### 🔑 Key Point
-
-Your solution is **Prim's MST algorithm**, not Kruskal's.
-
-The important difference is:
-
-* **Prim:** grows one MST by repeatedly choosing the cheapest edge from the current tree to an unvisited vertex.
-* **Kruskal:** sorts all edges and uses **DSU/Union-Find** to avoid cycles.
-
-Your implementation is a valid and efficient approach for this LeetCode problem.
