@@ -23,7 +23,7 @@ public:
 
     int numDecodings(string s) {
 
-        vector<int> dp(s.length(), -1);
+        vector<int> dp(s.length(), -1);//Memoization, this handle TLE(time limit exceed)
 
         return solve(s, 0, s.length(), dp);
     }
